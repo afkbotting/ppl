@@ -80,6 +80,14 @@ FunTab:AddButton({
 loadstring(game:HttpGet("https://raw.githubusercontent.com/K0t1n/Public/main/Crucifix%20On%20Rift"))()
   	end    
 })
+FunTab:AddButton({
+	Name = "Laser Gun",
+	Callback = function()
+
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/K0t1n/Public/main/Laser%20Gun"))()
+  	end    
+})
 local EntityTab = Window:MakeTab({
 	Name = "Spawns",
 	Icon = "rbxassetid://4483345998",
@@ -102,6 +110,24 @@ EntityTab:AddButton({
 	Name = "Spawn Trollface",
 	Callback = function()
       		loadstring(game:HttpGet("https://raw.githubusercontent.com/CloneNikita/CloneNikita/main/Troll.lua"))() 
+  	end    
+})
+EntityTab:AddButton({
+	Name = "Spawn Eyes",
+	Callback = function()
+      		local EntitySpawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/dreadmania/Scripts/main/Spawner_V2.lua"))()
+local Configuration = {
+    Kill = true, -- change to "Damage = 10," for eyes, doesnt work on other entities
+    Damage = 10,
+    Speed = 160, -- 60 for rush, doesnt work on other entities
+    Time = 0 -- 5 for rush, doesnt work on other entitie
+ 
+ 
+}
+firesignal(game.ReplicatedStorage.EntityInfo.DeathHint.OnClientEvent, {"Died again.","Wait what...","I have no idea whats is that entity.", "I have no idea its too many eyes on them.", "Maybe you should call it Eyes?", "Last time when i saw you look at it you just died.", "Maybe you should don't look at these."}, "Yellow")
+wait(2.3)
+game.Players.LocalPlayer.PlayerGui.MainUI.Statistics.Death.Text = "Died to Eyes"
+EntitySpawner:Spawn("Eyes", Configuration)
   	end    
 })
 	EntityTab:AddButton({
@@ -140,6 +166,31 @@ EntityTab:AddButton({
 	
 	  	end
 })
+EntityTab:AddButton({
+		Name = "Spawn Eyes Next Room",
+		Callback = function()
+		local latestroom = game.ReplicatedStorage.GameData.LatestRoom
+	    nextroom = game.Workspace.CurrentRooms.ChildAdded:Connect(function()
+	    local EntitySpawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/dreadmania/Scripts/main/Spawner_V2.lua"))()
+local Configuration = {
+    Kill = true, -- change to "Damage = 10," for eyes, doesnt work on other entities
+    Damage = 10,
+    Speed = 160, -- 60 for rush, doesnt work on other entities
+    Time = 0 -- 5 for rush, doesnt work on other entitie
+ 
+ 
+}
+firesignal(game.ReplicatedStorage.EntityInfo.DeathHint.OnClientEvent, {"Died again.","Wait what...","I have no idea whats is that entity.", "I have no idea its too many eyes on them.", "Maybe you should call it Eyes?", "Last time when i saw you look at it you just died.", "Maybe you should don't look at these."}, "Yellow")
+wait(2.3)
+game.Players.LocalPlayer.PlayerGui.MainUI.Statistics.Death.Text = "Died to Eyes"
+EntitySpawner:Spawn("Eyes", Configuration)
+	     nextroom:Disconnect()
+	     end)
+	
+	
+	  	end
+})
+
 EntityTab:AddToggle({
 	Name = "Rush Every Room",
 	Default = false,
@@ -183,6 +234,35 @@ EntityTab:AddToggle({
     nextroom = game.Workspace.CurrentRooms.ChildAdded:Connect(function()
     
    loadstring(game:HttpGet("https://raw.githubusercontent.com/CloneNikita/CloneNikita/main/Troll.lua"))() 
+    end)
+    elseif Value == false then
+    if nextroom ~= nil then
+nextroom:Disconnect()
+    end
+end
+end
+})
+EntityTab:AddToggle({
+	Name = "Eyes Every Room",
+	Default = false,
+	Callback = function(Value)
+   
+    if Value == true then
+    nextroom = game.Workspace.CurrentRooms.ChildAdded:Connect(function()
+    
+   local EntitySpawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/dreadmania/Scripts/main/Spawner_V2.lua"))()
+local Configuration = {
+    Kill = true, -- change to "Damage = 10," for eyes, doesnt work on other entities
+    Damage = 10,
+    Speed = 160, -- 60 for rush, doesnt work on other entities
+    Time = 0 -- 5 for rush, doesnt work on other entitie
+ 
+ 
+}
+firesignal(game.ReplicatedStorage.EntityInfo.DeathHint.OnClientEvent, {"Died again.","Wait what...","I have no idea whats is that entity.", "I have no idea its too many eyes on them.", "Maybe you should call it Eyes?", "Last time when i saw you look at it you just died.", "Maybe you should don't look at these."}, "Yellow")
+wait(2.3)
+game.Players.LocalPlayer.PlayerGui.MainUI.Statistics.Death.Text = "Died to Eyes"
+EntitySpawner:Spawn("Eyes", Configuration)
     end)
     elseif Value == false then
     if nextroom ~= nil then
@@ -262,4 +342,4 @@ OTab:AddButton({
 })
 
 
-OrionLib:Init()Press {SPACE} for 0 seconds Pause 500 Milliseconds
+OrionLib:Init()
