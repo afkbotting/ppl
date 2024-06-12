@@ -1,3 +1,4 @@
+-- TOUCH IT WITHOUT PERMISSION IF YOUR A GAY
 if _G.on==nil then _G.on=false end
 if _G.on==false then
 _G.on=true
