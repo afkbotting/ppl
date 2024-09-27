@@ -32,9 +32,7 @@ getgenv().vynixu_crucifix_manager = {
 local module = {}
 
 -- Functions
-function WaitUntil(sound, t)
-    repeat RunService.RenderStepped:Wait() until sound.TimePosition >= t
-end
+
 
 function FadeOut(pentagram)
     for _, c in pentagram:GetChildren() do
@@ -83,7 +81,7 @@ function Crucifix(model, playerTool, config)
 	local crucifix = repentance.Crucifix
 	local pentagram = repentance.Pentagram
 	local entityPart = repentance.Entity
-	local sound = (config.Resist and crucifix.SoundFail or crucifix.Sound)
+	
 	local shaker = moduleScripts.Main_Game.camShaker:StartShake(5, 20, 2, Vector3.new())
 
     -- Repentance setup
@@ -92,7 +90,7 @@ function Crucifix(model, playerTool, config)
 	repentance.Entity.CFrame = entityPivot
     crucifix.BodyPosition.Position = (localCharacter:GetPivot() * CFrame.new(0.5, 3, -6)).Position
 	repentance.Parent = workspace
-	sound:Play()
+	
 
     -- Teleport model to repentance entity part
 	task.spawn(function()
@@ -112,7 +110,7 @@ function Crucifix(model, playerTool, config)
 	task.delay(2, pentagram.Circle.Destroy, pentagram.Circle)
 
 	task.spawn(function()
-        WaitUntil(sound, 2.625)
+        
 		
         TweenService:Create(pentagram.Base.LightAttach.LightBright, TweenInfo.new(1.5, Enum.EasingStyle.Circular, Enum.EasingDirection.InOut), {
 			Brightness = 5,
@@ -146,13 +144,13 @@ function Crucifix(model, playerTool, config)
 
 	-- Actions
 	if config.Resist == false then
-		WaitUntil(sound, 2)
+		
 		
         TweenService:Create(entityPart, TweenInfo.new(3, Enum.EasingStyle.Back, Enum.EasingDirection.In), { CFrame = repentance.Entity.CFrame - Vector3.new(0, 25, 0) }):Play()
 		
-        WaitUntil(sound, 6.75)
+        
 	else
-		WaitUntil(sound, 4)
+		
 
 		TweenService:Create(crucifix.BodyAngularVelocity, TweenInfo.new(3, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), { AngularVelocity = Vector3.new() }):Play()
 		TweenService:Create(pentagram.Base.LightAttach.LightBright, TweenInfo.new(1.5, Enum.EasingStyle.Circular, Enum.EasingDirection.InOut), { Brightness = 0, Range = 0, Color = Color3.fromRGB(255, 116, 130) }):Play()
@@ -178,7 +176,7 @@ function Crucifix(model, playerTool, config)
 			end
 		end)
 
-		WaitUntil(sound, 9.625)
+		
 	end
 
 	-- Crucifix explode
